@@ -1,0 +1,4 @@
+{
+    "command": "npm install && npx tsc --noEmit && npm test -- --ci",
+    "working_directory": "/home/kavia/workspace/code-generation/calorie-tracker-for-food-lovers-5976-5985/calory_app_frontend"
+}
