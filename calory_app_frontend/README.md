@@ -1,82 +1,75 @@
-# Lightweight React Template for KAVIA
+# Calorie Tracker Frontend (React)
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A modern, responsive React application for food lovers to log meals, track calories, view dashboards, and search a food database. This project is designed as a lightweight MVP with a clean UI, environment-based configuration, and secure user authentication.
 
 ## Features
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- Secure authentication (register, login, logout)
+- Meal logging (add, list, delete)
+- Dashboard with 7-day calorie trends (Chart.js)
+- Food database search
+- Responsive layout and dark mode
+- Environment-based API configuration
 
 ## Getting Started
 
-In the project directory, you can run:
+1. Install dependencies:
+   npm install
 
-### `npm start`
+2. Configure environment:
+   - Copy .env.example to .env and set the variables:
+     - REACT_APP_API_BASE_URL (e.g., http://localhost:4000)
+     - REACT_APP_SITE_URL (optional; used by certain auth flows)
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. Start development server:
+   npm start
+   App will be available at http://localhost:3000
 
-### `npm test`
+4. Run tests (non-interactive):
+   npm test
 
-Launches the test runner in interactive watch mode.
+5. Build for production:
+   npm run build
 
-### `npm run build`
+## Routes
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- /login - Authenticate users
+- /register - Create a new account
+- /dashboard - Authenticated dashboard with charts
+- /meals - Manage meal entries
+- /search - Food database lookup
 
-## Customization
+Protected routes are wrapped by a ProtectedRoute component; unauthenticated users are redirected to /login.
 
-### Colors
+## Environment Variables
 
-The main brand colors are defined as CSS variables in `src/App.css`:
+- REACT_APP_API_BASE_URL
+  Base URL for backend API endpoints.
+- REACT_APP_SITE_URL
+  Public site URL; used for auth providers that require redirect links.
 
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
+Never hardcode secrets. Values are injected via .env at build time.
 
-### Components
+## Tech
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
+- React 18
+- React Router v6
+- Chart.js via react-chartjs-2
+- Vanilla CSS (see src/App.css)
 
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
+## Notes
 
-## Learn More
+- Authentication expects the backend to expose:
+  - POST /auth/register
+  - POST /auth/login
+  - GET /auth/me
+- Meals endpoints:
+  - GET /meals
+  - POST /meals
+  - DELETE /meals/:id
+- Food search endpoint:
+  - GET /foods/search?q=term
+
+Adjust services in src/services if your backend differs.
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
